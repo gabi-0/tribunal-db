@@ -5,6 +5,7 @@ considerente:
 
 3. un magistrat apartine unui singur complet
 
+4. avocatul este unic persoanei
 
 
 branchuri diferite
