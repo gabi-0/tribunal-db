@@ -20,6 +20,7 @@ CREATE TABLE Magistrati (
 	idComplet INT,
 	nume VARCHAR(64) NOT NULL,
 	prenume VARCHAR(128) NOT NULL,
+	functie CHAR(10) NOT NULL, -- judecator / procuror
 	CNP CHAR(13) NOT NULL,
 	biSerie CHAR(2) NOT NULL,
 	biNumar CHAR(6) NOT NULL,
