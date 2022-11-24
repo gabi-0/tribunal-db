@@ -12,7 +12,7 @@ CREATE TABLE Complet (
 	nume VARCHAR(16) NOT NULL,
 	FOREIGN KEY (idSectie) REFERENCES Sectii(id)
 		ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT nume_unique UNIQUE(nume)
+	CONSTRAINT nume_unic UNIQUE(nume)
 );
 
 CREATE TABLE Magistrati (
@@ -29,7 +29,9 @@ CREATE TABLE Magistrati (
 	parola CHAR(60) NOT NULL,
 	FOREIGN KEY (idComplet) REFERENCES Complet(id)
 		ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT magistrat_unique UNIQUE(CNP, biSerie, biNumar)
+	CONSTRAINT magistrat_unic UNIQUE(CNP, biSerie, biNumar),
+	CONSTRAINT email_unic UNIQUE(email),
+	CONSTRAINT user_unic UNIQUE(user)
 );
 
 CREATE TABLE Dosar (
@@ -45,7 +47,7 @@ CREATE TABLE Dosar (
 	dataModif DATETIME NOT NULL DEFAULT (CURDATE()),
 	FOREIGN KEY (idComplet) REFERENCES Complet(id)
 		ON UPDATE CASCADE ON DELETE RESTRICT,
-	CONSTRAINT dosar_unique UNIQUE(nrDosar, instanta, anDosar)
+	CONSTRAINT dosar_unic UNIQUE(nrDosar, instanta, anDosar)
 );
 
 CREATE TABLE Probe (
@@ -92,7 +94,8 @@ CREATE TABLE Persoane (
 	apartament VARCHAR(6),
 	numeRepr VARCHAR(255) NOT NULL,
 	userRepr VARCHAR(64) NOT NULL,
-	parolaRepr VARCHAR(60) NOT NULL
+	parolaRepr VARCHAR(60) NOT NULL,
+	CONSTRAINT user_unic UNIQUE(userRepr)
 );
 
 CREATE TABLE Parti (
