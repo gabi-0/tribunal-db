@@ -35,7 +35,7 @@ CREATE TABLE Magistrati (
 );
 
 CREATE TABLE Dosar (
-	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	id INT PRIMARY KEY AUTO_INCREMENT,
 	nrDosar INT NOT NULL,
 	instanta INT NOT NULL,
 	anDosar YEAR NOT NULL DEFAULT (YEAR(CURDATE())),
@@ -52,7 +52,7 @@ CREATE TABLE Dosar (
 
 CREATE TABLE Probe (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
-	idDosar BIGINT,
+	idDosar INT,
 	numar INT,
 	nume VARCHAR(32) NOT NULL,
 	descriere VARCHAR(255) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE Probe (
 
 CREATE TABLE Sedinte (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	idDosar BIGINT,
+	idDosar INT,
 	dataSedinta DATETIME NOT NULL,
 	tipSolutie VARCHAR(128) NOT NULL,
 	solutie TEXT NOT NULL,
@@ -84,6 +84,7 @@ CREATE TABLE Persoane (
 	nrRegComertului VARCHAR(16),
 	CAEN CHAR(4),
 	IBAN CHAR(24),
+	email VARCHAR(255),
 	telefon VARCHAR(14) NOT NULL,
 	nationalitate VARCHAR(16),
 	localitate VARCHAR(32) NOT NULL,
@@ -91,28 +92,44 @@ CREATE TABLE Persoane (
 	strada VARCHAR(128),
 	numarStrada VARCHAR(6),
 	bloc VARCHAR(6),
-	apartament VARCHAR(6),
-	numeRepr VARCHAR(255) NOT NULL,
-	userRepr VARCHAR(64) NOT NULL,
-	parolaRepr VARCHAR(60) NOT NULL,
-	CONSTRAINT user_unic UNIQUE(userRepr)
+	apartament VARCHAR(6)
+);
+
+CREATE TABLE Reprezentanti (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nume VARCHAR(64) NOT NULL,
+	prenume VARCHAR(128) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	user VARCHAR(64) NOT NULL,
+	parola VARCHAR(60) NOT NULL,
+	CONSTRAINT email_unic UNIQUE(email),
+	CONSTRAINT user_unic UNIQUE(user)
 );
 
 CREATE TABLE Parti (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	idPersoana INT,
-	idDosar BIGINT,
+	idDosar INT,
+	idReprezentant INT,
 	calitate VARCHAR(32) NOT NULL,
 	FOREIGN KEY (idPersoana) REFERENCES Persoane(id)
 		ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY (idDosar) REFERENCES Dosar(id)
-		ON UPDATE CASCADE ON DELETE CASCADE
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (idReprezentant) REFERENCES Reprezentanti(id)
+		ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE Sesiune (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
 	token CHAR(252) NOT NULL,
 	userM INT DEFAULT NULL,
-	userP INT DEFAULT NULL,
-	registered DATETIME NOT NULL DEFAULT (CURDATE())
+	userR INT DEFAULT NULL,
+	registered INT(11) NOT NULL -- unix timestamp
+);
+
+CREATE TABLE ResetParola (
+	id INT PRIMARY KEY,
+	token CHAR(60) NOT NULL,
+	expires INT(11) NOT NULL
 );
