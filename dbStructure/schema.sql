@@ -101,7 +101,7 @@ CREATE TABLE Reprezentanti (
 	prenume VARCHAR(128) NOT NULL,
 	email VARCHAR(255) NOT NULL,
 	user VARCHAR(64) NOT NULL,
-	parola VARCHAR(60) NOT NULL,
+	parola CHAR(60) NOT NULL,
 	CONSTRAINT email_unic UNIQUE(email),
 	CONSTRAINT user_unic UNIQUE(user)
 );
@@ -125,7 +125,7 @@ CREATE TABLE Sesiune (
 	token CHAR(252) NOT NULL,
 	userM INT DEFAULT NULL,
 	userR INT DEFAULT NULL,
-	registered INT(11) NOT NULL -- unix timestamp
+	expires INT(11) NOT NULL -- unix timestamp
 );
 
 CREATE TABLE ResetParola (
