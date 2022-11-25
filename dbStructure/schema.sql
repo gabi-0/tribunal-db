@@ -3,7 +3,7 @@
 CREATE TABLE Sectii (
 	id INT PRIMARY KEY,
 	tip VARCHAR(128) NOT NULL,
-	numar INT NOT NULL
+	presedinte INT
 );
 
 CREATE TABLE Complet (
@@ -33,6 +33,10 @@ CREATE TABLE Magistrati (
 	CONSTRAINT email_unic UNIQUE(email),
 	CONSTRAINT user_unic UNIQUE(user)
 );
+
+ALTER TABLE Sectii ADD CONSTRAINT pres_fk 
+FOREIGN KEY (presedinte) REFERENCES Magistrati(id)
+	ON UPDATE CASCADE ON DELETE SET NULL;
 
 CREATE TABLE Dosar (
 	id INT PRIMARY KEY AUTO_INCREMENT,
