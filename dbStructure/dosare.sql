@@ -1,5 +1,4 @@
 
-
 INSERT INTO Sectii (
 	id,
 	tip,
@@ -7,33 +6,33 @@ INSERT INTO Sectii (
 ) VALUES (
 	1,
 	"Penală",
-	NULL
+	5
 ), (
 	2,
 	"Contencios Administrativ Şi Fiscal",
-	NULL
+	2
 ), (
 	3,
 	"Civilă",
-	NULL
+	2
 ), (
 	4,
 	"Civilă",
-	NULL
+	7
 ), (
 	5,
 	"Civilă",
-	NULL
+	4
 ), (
 	6,
 	"Civilă",
-	NULL
+	1
 ), (
 	7,
 	"Civilă",
-	NULL
+	3
 ), (
 	8,
 	"Conflicte De Muncă Şi Asigurări Sociale",
-	NULL
+	7
 );

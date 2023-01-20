@@ -79,7 +79,7 @@ CREATE TABLE Sedinte (
 CREATE TABLE Persoane (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nume VARCHAR(255) NOT NULL,
-	tipPersoana VARCHAR(10) NOT NULL,
+	tipPersoana VARCHAR(10),
 	CNP CHAR(13),
 	CIF CHAR(12),
 	biSerie CHAR(2),
@@ -89,10 +89,10 @@ CREATE TABLE Persoane (
 	CAEN CHAR(4),
 	IBAN CHAR(24),
 	email VARCHAR(255),
-	telefon VARCHAR(14) NOT NULL,
+	telefon VARCHAR(14),
 	nationalitate VARCHAR(16),
-	localitate VARCHAR(32) NOT NULL,
-	judet VARCHAR(16) NOT NULL,
+	localitate VARCHAR(32),
+	judet VARCHAR(16),
 	strada VARCHAR(128),
 	numarStrada VARCHAR(6),
 	bloc VARCHAR(6),
@@ -115,7 +115,7 @@ CREATE TABLE Parti (
 	idPersoana INT,
 	idDosar INT,
 	idReprezentant INT,
-	calitate VARCHAR(32) NOT NULL,
+	calitate VARCHAR(128) NOT NULL,
 	FOREIGN KEY (idPersoana) REFERENCES Persoane(id)
 		ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY (idDosar) REFERENCES Dosar(id)
@@ -129,6 +129,7 @@ CREATE TABLE Sesiune (
 	token CHAR(252) NOT NULL,
 	userM INT DEFAULT NULL,
 	userR INT DEFAULT NULL,
+	extend INT DEFAULT NULL,
 	expires INT(11) NOT NULL -- unix timestamp
 );
 
