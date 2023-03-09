@@ -7,12 +7,13 @@ iddosar = 1
 idparte = 1
 idpers = 1
 
-# f = open("dosar_TOT.sql", "w") 
+# f = open("dosar_TOT.sql", "w")
 p = io.open("dbStructure/parti_TOT.sql", mode="w", encoding="utf-8")
 pers = io.open("dbStructure/pers_TOT.sql", mode="w", encoding="utf-8")
 f = io.open("dbStructure/dosar_TOT.sql", mode="w", encoding="utf-8")
 
-tree = ET.parse('C:/Users/Gabi/Desktop/dosare.xml')
+# tree = ET.parse('C:/Users/Gabi/Desktop/dosare.xml')
+tree = ET.parse('dosare.xml')
 
 dosare = tree.getroot()[0][0][0]
 
@@ -80,3 +81,6 @@ for dosar in dosare:
 	f.write(obiect)
 	f.write('","'+ stadiu +'","'+ data +'","'+ dtmodif +'"),\n')
 	iddosar += 1
+
+
+f.write(" UPDATE Dosar SET IDComplet = ((id%8) + 1);")

@@ -130,7 +130,8 @@ CREATE TABLE Sesiune (
 	userM INT DEFAULT NULL,
 	userR INT DEFAULT NULL,
 	extend INT DEFAULT NULL,
-	expires INT(11) NOT NULL -- unix timestamp
+	expires INT(11) NOT NULL, -- unix timestamp
+	ua CHAR(128)
 );
 
 CREATE TABLE ResetParola (

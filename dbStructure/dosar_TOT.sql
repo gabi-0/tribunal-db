@@ -999,4 +999,5 @@ INSERT INTO Dosar (id,nrDosar,instanta,anDosar,materie,obiect,stadiu,dataInreg,d
 (997,7344,3,2016,"Civil","acţiune în constatare declinare","Fond","2016-02-24 14:43:00","2018-08-06 18:07:17"),
 (998,21556,301,2016,"Litigii cu profesioniştii","pretenţii","Apel","2017-08-30 13:51:00","2018-08-07 17:39:08"),
 (999,33617,300,2016,"Litigii cu profesioniştii","pretenţii","Apel","2017-09-13 16:06:00","2018-08-07 17:39:19"),
-(1000,76824,299,2015,"Litigii cu profesioniştii","acţiune în constatare CLAUZE ABUZIVE","Apel","2018-01-09 14:26:00","2018-08-07 17:39:34"),
+(1000,76824,299,2015,"Litigii cu profesioniştii","acţiune în constatare CLAUZE ABUZIVE","Apel","2018-01-09 14:26:00","2018-08-07 17:39:34");
+UPDATE Dosar SET IDComplet = ((id%8) + 1);
