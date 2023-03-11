@@ -7,9 +7,11 @@ considerente:
 
 4. avocatul este unic persoanei
 
+5. UA separat in BD
+
+
 
 branchuri diferite
-
 - 1 adv 2 adv		=> oarecum
 - 1 adv 2 fals		=> varianta corecta pt 1 adv
 - 1 fals 2 adv		=> gresit
